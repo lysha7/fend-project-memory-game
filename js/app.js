@@ -1,14 +1,7 @@
-/*
- * Create a list that holds all of your cards
- */
+// Array containing all cards
 const cards = ["diamond", "diamond", "paper-plane-o", "paper-plane-o", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// Call function to shuffle cards
 shuffle(cards);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -26,19 +19,28 @@ function shuffle(array) {
     return array;
 }
 
-cards.forEach(function(element) {
-	const deck = document.querySelector('.deck');
-	
-	const listItem = document.createElement('li');
-	deck.appendChild(listItem);
-	listItem.className = 'card open show';	
+// Call function to display cards on page
+createCards();
 
-	const icon = document.createElement('i');
-	listItem.appendChild(icon);
-	icon.className = `fa fa-${element}`;
+// Loop through array to create html for each card and display it on the page
+function createCards() {
+	cards.forEach(function(element) {
+		const deck = document.querySelector('.deck');
+		
+		const listItem = document.createElement('li');
+		deck.appendChild(listItem);
+		listItem.className = 'card open show';	
+
+		const icon = document.createElement('i');
+		listItem.appendChild(icon);
+		icon.className = `fa fa-${element}`;
+	});
+}
+
+// Add event listener to the restart button so it will reload the page
+document.querySelector('.restart').addEventListener('click', function() {
+	location.reload();
 });
-
-
 
 
 
