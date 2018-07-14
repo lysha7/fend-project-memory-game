@@ -41,7 +41,7 @@ document.querySelector('.restart').addEventListener('click', function() {
 
 // Add event listener to the deck so that when a card is clicked, its other side will be revealed
 deck.addEventListener('click', function(event) {
-	if (event.target.classList.contains('card')) {
+	if (event.target.classList.value === 'card') {
 		showCard(event.target);
 		compareCards(event.target.children);
 	}
