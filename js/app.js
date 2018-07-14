@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const cards = ["diamond", "diamond", "paper-plane-o", "paper-plane-o", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
 
 /*
  * Display the cards on the page
@@ -9,6 +9,20 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+cards.forEach(function(element) {
+	const deck = document.querySelector('.deck');
+	
+	const listItem = document.createElement('li');
+	deck.appendChild(listItem);
+	listItem.className = 'card open show';	
+
+	const icon = document.createElement('i');
+	listItem.appendChild(icon);
+	icon.className = `fa fa-${element}`;
+});
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
