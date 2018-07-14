@@ -9,20 +9,7 @@ const cards = ["diamond", "diamond", "paper-plane-o", "paper-plane-o", "anchor",
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
-cards.forEach(function(element) {
-	const deck = document.querySelector('.deck');
-	
-	const listItem = document.createElement('li');
-	deck.appendChild(listItem);
-	listItem.className = 'card open show';	
-
-	const icon = document.createElement('i');
-	listItem.appendChild(icon);
-	icon.className = `fa fa-${element}`;
-});
-
-
+shuffle(cards);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -38,6 +25,22 @@ function shuffle(array) {
 
     return array;
 }
+
+cards.forEach(function(element) {
+	const deck = document.querySelector('.deck');
+	
+	const listItem = document.createElement('li');
+	deck.appendChild(listItem);
+	listItem.className = 'card open show';	
+
+	const icon = document.createElement('i');
+	listItem.appendChild(icon);
+	icon.className = `fa fa-${element}`;
+});
+
+
+
+
 
 
 /*
