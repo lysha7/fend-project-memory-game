@@ -1,5 +1,6 @@
 // Array containing all cards
 const cards = ["diamond", "diamond", "paper-plane-o", "paper-plane-o", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
+const deck = document.querySelector('.deck');
 
 // Call function to shuffle cards
 shuffle(cards);
@@ -22,9 +23,8 @@ function shuffle(array) {
 // Call function to display cards on page
 createCards();
 
-// Loop through array to add icons to each card according to the shuffled deck
+// Loop through cards to add icons to each card according to the shuffled array
 function createCards() {
-	const deck = document.querySelector('.deck');
 	const icons = deck.getElementsByTagName('i');
 	let i = 0;
 	for (icon of icons) {
@@ -39,6 +39,16 @@ document.querySelector('.restart').addEventListener('click', function() {
 });
 
 
+// Add event listener to the deck so that when a card is clicked, its other side will be revealed
+deck.addEventListener('click', function(event) {
+	if (event.target.classList.contains('card')) {
+		showCard(event.target);
+	}
+});
+
+function showCard(card) {
+	card.classList.add('open', 'show');
+}
 
 
 /*
