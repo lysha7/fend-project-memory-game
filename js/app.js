@@ -43,6 +43,7 @@ document.querySelector('.restart').addEventListener('click', function() {
 deck.addEventListener('click', function(event) {
 	if (event.target.classList.contains('card')) {
 		showCard(event.target);
+		compareCards(event.target.children);
 	}
 });
 
@@ -50,6 +51,28 @@ function showCard(card) {
 	card.classList.add('open', 'show');
 }
 
+// Compare two cards to see if their icons match
+let openCards = [];
+
+function compareCards(card) {
+	openCards.push(card);
+
+	if (openCards.length === 2) {
+		
+		let icon1 = openCards[0].item(0).classList.value;
+		let icon2 = openCards[1].item(0).classList.value;
+		
+		if (icon1 === icon2) {
+			console.log("It's a match!");
+		}
+		else {
+			console.log("Nope.");
+		}
+
+		openCards.length = 0;
+	}
+
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
