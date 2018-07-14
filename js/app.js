@@ -22,19 +22,15 @@ function shuffle(array) {
 // Call function to display cards on page
 createCards();
 
-// Loop through array to create html for each card and display it on the page
+// Loop through array to add icons to each card according to the shuffled deck
 function createCards() {
-	cards.forEach(function(element) {
-		const deck = document.querySelector('.deck');
-		
-		const listItem = document.createElement('li');
-		deck.appendChild(listItem);
-		listItem.className = 'card open show';	
-
-		const icon = document.createElement('i');
-		listItem.appendChild(icon);
-		icon.className = `fa fa-${element}`;
-	});
+	const deck = document.querySelector('.deck');
+	const icons = deck.getElementsByTagName('i');
+	let i = 0;
+	for (icon of icons) {
+		icon.className = `fa fa-${cards[i]}`;
+		i++;
+	}
 }
 
 // Add event listener to the restart button so it will reload the page
