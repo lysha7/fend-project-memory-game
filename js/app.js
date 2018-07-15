@@ -63,14 +63,15 @@ function compareCards(card) {
 		let icon2 = openCards[1].children.item(0).classList.value;
 		
 		if (icon1 === icon2) {
-			console.log("yes");
 			makeMatch(openCards);
+			openCards.length = 0;
 		}
 		else {
-			console.log("no");
+			setTimeout(function() {
+				noMatch(openCards);
+				openCards.length = 0;
+			}, 1000);
 		}
-
-		openCards.length = 0;
 	}
 }
 
@@ -81,6 +82,12 @@ function makeMatch(array) {
 	}
 }
 
+// Function to remove .open and .show classes from elements that don't match
+function noMatch(array) {
+	for (element of array) {
+		element.classList.remove('open', 'show');
+	}	
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
