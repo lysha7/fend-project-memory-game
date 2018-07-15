@@ -1,5 +1,6 @@
 // Array containing all cards
 const cards = ["diamond", "diamond", "paper-plane-o", "paper-plane-o", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
+// Container for cards in html
 const deck = document.querySelector('.deck');
 
 // Call function to shuffle cards
@@ -39,7 +40,7 @@ document.querySelector('.restart').addEventListener('click', function() {
 });
 
 
-// Add event listener to the deck so that when a card is clicked, its other side will be revealed
+// Add event listener to the deck so that when a card is clicked, its other side will be revealed and the cards will be compared
 deck.addEventListener('click', function(event) {
 	if (event.target.classList.value === 'card') {
 		showCard(event.target);
@@ -51,8 +52,9 @@ function showCard(card) {
 	card.classList.add('open', 'show');
 }
 
-// Function to compare two cards and see if their icons match
+// Function to compare two cards and see if their icons match and increase move counter
 let openCards = [];
+let counter = 0;
 
 function compareCards(card) {
 	openCards.push(card);
@@ -72,6 +74,9 @@ function compareCards(card) {
 				openCards.length = 0;
 			}, 1000);
 		}
+
+		counter++;
+		updateCounterDisplay(counter);
 	}
 }
 
@@ -87,6 +92,21 @@ function noMatch(array) {
 	for (element of array) {
 		element.classList.remove('open', 'show');
 	}	
+}
+
+// Function to update the moves counter on the page
+function updateCounterDisplay(counter) {
+	const counterSpan = document.querySelector('.counter');
+	const moves = document.querySelector('#moves');
+	
+	counterSpan.textContent = counter;
+
+	if (counter === 1) {
+		moves.textContent = " Move";
+	}
+	else {
+		moves.textContent = " Moves";
+	}
 }
 
 /*
