@@ -42,7 +42,7 @@ document.querySelector('.restart').addEventListener('click', function() {
 
 // Add event listener to the deck so that when a card is clicked, its other side will be revealed and the cards will be compared
 deck.addEventListener('click', function(event) {
-	if (event.target.classList.value === 'card') {
+	if (event.target.classList.value === 'card' && openCards.length < 2) {
 		showCard(event.target);
 		compareCards(event.target);
 	}
