@@ -76,7 +76,12 @@ function compareCards(card) {
 		}
 
 		counter++;
+		
 		updateCounterDisplay(counter);
+		
+		if (counter === 16 || counter === 21 || counter === 26) {
+			updateStarDisplay(counter);
+		}
 	}
 }
 
@@ -106,6 +111,19 @@ function updateCounterDisplay(counter) {
 	}
 	else {
 		moves.textContent = " Moves";
+	}
+}
+
+function updateStarDisplay(counter) {
+	const stars = document.querySelectorAll('.fa-star');
+	if (counter === 16) {
+		stars[2].classList = "fa fa-star-o";
+	}
+	if (counter === 21) {
+		stars[1].classList = "fa fa-star-o";
+	}
+	if (counter === 26) {
+		stars[0].classList = "fa fa-star-o";
 	}
 }
 
