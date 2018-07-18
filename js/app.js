@@ -40,13 +40,48 @@ document.querySelector('.restart').addEventListener('click', function() {
 });
 
 
-// Add event listener to the deck so that when a card is clicked, its other side will be revealed and the cards will be compared
+// Add event listener to the deck so that when a card is clicked, game functionality will begin
+let firstClick = true;
+
 deck.addEventListener('click', function(event) {
+	// Register only click on cards, and no more than two cards at a time
 	if (event.target.classList.value === 'card' && openCards.length < 2) {
+
+		// Set timer to begin only the first time a card is clicked
+		if (firstClick === true) {
+			startTimer();
+			firstClick = false;
+		}
+		
 		showCard(event.target);
 		compareCards(event.target);
 	}
 });
+
+// Timer function
+function startTimer() {
+	let scd = 0;
+	let min = 0;
+	const scdDisplay = document.querySelector('.seconds');
+	const minDisplay = document.querySelector('.minutes');
+
+	const timer = setInterval(function() {
+		scd++;
+		
+		if (scd === 60) {
+		scd = 0;
+		min++;
+		minDisplay.textContent = pad2(min);
+		}
+
+		scdDisplay.textContent = pad2(scd);
+	}, 1000);	
+}
+
+// Function from https://www.electrictoolbox.com/pad-number-two-digits-javascript/ to pad a number to 2 digits
+function pad2(number) {
+     return (number < 10 ? '0' : '') + number   
+}
 
 function showCard(card) {
 	card.classList.add('open', 'show');
@@ -127,13 +162,4 @@ function updateStarDisplay(counter) {
 	}
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
