@@ -112,3 +112,31 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.win-popup {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    padding-top: 20vh;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.win-popup-content {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    padding-left: 40px;
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Pattern */
+    border: solid 1px #000;
+}
+
+.close {
+    float: right;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+}
