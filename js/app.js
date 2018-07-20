@@ -24,10 +24,14 @@ function shuffle(array) {
 // Call function to display cards on page
 createCards();
 
-// Loop through cards to add icons to each card according to the shuffled array
+// Loop through deck to add icons to each card according to the shuffled array
 function createCards() {
+	// Access all <i> elements
 	const icons = deck.getElementsByTagName('i');
+	// Variable to keep track of where we are in the cards array
 	let i = 0;
+
+	// Loop through <i> elements, and assign a classname that displays the correct icon
 	for (icon of icons) {
 		icon.className = `fa fa-${cards[i]}`;
 		i++;
@@ -45,7 +49,7 @@ let firstClick = true;
 var timer;
 
 deck.addEventListener('click', function(event) {
-	// Register only click on cards, and no more than two cards at a time
+	// Register only clicks on cards, and no more than two cards at a time
 	if (event.target.classList.value === 'card' && openCards.length < 2) {
 
 		// Set timer to begin only the first time a card is clicked
@@ -53,10 +57,12 @@ deck.addEventListener('click', function(event) {
 			timer = setInterval(startTimer, 1000);
 			firstClick = false;
 		}
-		
+
+		// Call functions to show and compare cards
 		showCard(event.target);
 		compareCards(event.target);
 
+		// If all matches have been made, stop the timer and call the function to display the popup window with stats
 		if (matchCounter === 8) {
 			clearInterval(timer);
 			winGame();
@@ -72,14 +78,17 @@ function startTimer() {
 	const scdDisplay = document.querySelector('.seconds');
 	const minDisplay = document.querySelector('.minutes');
 
+	// Increase the number of seconds by 1
 	scd++;
-		
+	
+	// When the number of seconds reaches 60, make seconds 0 and increase number of minutes by 1	
 	if (scd === 60) {
 		scd = 0;
 		min++;
+		// Display number of minutes
 		minDisplay.textContent = pad2(min);
 	}
-
+	// Display number of seconds
 	scdDisplay.textContent = pad2(scd);
 }
 
@@ -88,6 +97,7 @@ function pad2(number) {
      return (number < 10 ? '0' : '') + number   
 }
 
+// Function to display the "right side" of the card
 function showCard(card) {
 	card.classList.add('open', 'show');
 }
@@ -98,18 +108,23 @@ let moveCounter = 0;
 let matchCounter = 0;
 
 function compareCards(card) {
+
+	// Add card that was clicked to array of open cards
 	openCards.push(card);
 
+	// When there are two open cards in the array, access the classes of their child elements to see if they match
 	if (openCards.length === 2) {
 		
 		let icon1 = openCards[0].children.item(0).classList.value;
 		let icon2 = openCards[1].children.item(0).classList.value;
 		
+		// If they match, perform makeMatch function, empty array, and increase the number of total matches by 1
 		if (icon1 === icon2) {
 			makeMatch(openCards);
 			openCards.length = 0;
 			matchCounter++;
 		}
+		// If they don't match, wait one second, then perform the noMatch function and empty the array
 		else {
 			setTimeout(function() {
 				noMatch(openCards);
@@ -117,10 +132,13 @@ function compareCards(card) {
 			}, 1000);
 		}
 
+		// Increase the number of moves by 1
 		moveCounter++;
 		
+		// Call function to display the number of moves
 		updateCounterDisplay(moveCounter);
 		
+		// Call function to display the correct number of stars
 		updateStarDisplay(moveCounter);
 	}
 }
@@ -144,8 +162,10 @@ function updateCounterDisplay(counter) {
 	const counterSpan = document.querySelector('.counter');
 	const moves = document.querySelector('#moves');
 	
+	// Displays number of moves in the score panel
 	counterSpan.textContent = counter;
 
+	// Changes the word "Moves" to singular if there has been 1 move
 	if (counter === 1) {
 		moves.textContent = " Move";
 	}
@@ -154,6 +174,7 @@ function updateCounterDisplay(counter) {
 	}
 }
 
+// Function to "take away" stars when certain numbers of moves are reached
 let starsLeft = 3;
 function updateStarDisplay(counter) {
 	const stars = document.querySelectorAll('.fa-star');
@@ -171,6 +192,7 @@ function updateStarDisplay(counter) {
 	}
 }
 
+// Function to display window with game stats and option to play again
 function winGame() {
 	const winPopup = document.querySelector('.win-popup');
 	const totalMoves = document.querySelector('.total-moves');
@@ -180,22 +202,27 @@ function winGame() {
 	const x = document.querySelector('.close');
 	const restart = document.querySelector('.win-popup .restart');
 	
+	// Display window
 	winPopup.style.display = "block";
+
+	// Display stats
 	totalMoves.textContent = moveCounter;
 	totalStars.textContent = starsLeft;
+	// Change "stars" to singular if there is 1
 	if (starsLeft === 1) {
 		starWord.textContent = "star";
 	}
 	totalTime.textContent = `${pad2(min)}:${pad2(scd)}`;
 
+	// Allow user to close window by clicking the X
 	x.addEventListener('click', function() {
 		winPopup.style.display = "none";
 	});
 
+	// Allow user to start game over by clicking the retart button
 	restart.addEventListener('click', function() {
 		location.reload();
 	});
-
 }
 
 
