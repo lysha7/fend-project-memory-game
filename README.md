@@ -2,19 +2,18 @@
 
 ## Table of Contents
 
+* [About](#about)
 * [Instructions](#instructions)
 * [Contributing](#contributing)
 
+## About
+
+This app was created as part of a Udacity Front End Web Development Nanodegree project. The HTML and CSS for the static game board was provided, and I added the JavaScript functionality.
+
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The game is played like a regular memory game. Click on two cards to turn them over. If they match, they remain face up. If not, they will turn back over. The point of the game is to find all of the matches in the least number of moves.
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This is a project for a course, so I will not be actively maintaining it. Therefore, I will not be accepting pull requests.
