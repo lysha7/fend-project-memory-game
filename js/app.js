@@ -42,6 +42,7 @@ document.querySelector('.restart').addEventListener('click', function() {
 
 // Add event listener to the deck so that when a card is clicked, game functionality will begin
 let firstClick = true;
+var timer;
 
 deck.addEventListener('click', function(event) {
 	// Register only click on cards, and no more than two cards at a time
@@ -49,7 +50,7 @@ deck.addEventListener('click', function(event) {
 
 		// Set timer to begin only the first time a card is clicked
 		if (firstClick === true) {
-			startTimer();
+			timer = setInterval(startTimer, 1000);
 			firstClick = false;
 		}
 		
@@ -57,29 +58,30 @@ deck.addEventListener('click', function(event) {
 		compareCards(event.target);
 
 		if (matchCounter === 8) {
+			console.log(timer);
+			clearInterval(timer);
 			winGame();
 		}
 	}
 });
 
 // Timer function
+let scd = 0;
+let min = 0;
+
 function startTimer() {
-	let scd = 0;
-	let min = 0;
 	const scdDisplay = document.querySelector('.seconds');
 	const minDisplay = document.querySelector('.minutes');
 
-	const timer = setInterval(function() {
-		scd++;
+	scd++;
 		
-		if (scd === 60) {
+	if (scd === 60) {
 		scd = 0;
 		min++;
 		minDisplay.textContent = pad2(min);
-		}
+	}
 
-		scdDisplay.textContent = pad2(scd);
-	}, 1000);
+	scdDisplay.textContent = pad2(scd);
 }
 
 // Function from https://www.electrictoolbox.com/pad-number-two-digits-javascript/ to pad a number to 2 digits
