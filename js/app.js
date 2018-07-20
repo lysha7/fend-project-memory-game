@@ -55,6 +55,10 @@ deck.addEventListener('click', function(event) {
 		
 		showCard(event.target);
 		compareCards(event.target);
+
+		if (matchCounter === 8) {
+			winGame();
+		}
 	}
 });
 
@@ -75,7 +79,7 @@ function startTimer() {
 		}
 
 		scdDisplay.textContent = pad2(scd);
-	}, 1000);	
+	}, 1000);
 }
 
 // Function from https://www.electrictoolbox.com/pad-number-two-digits-javascript/ to pad a number to 2 digits
@@ -89,7 +93,8 @@ function showCard(card) {
 
 // Function to compare two cards and see if their icons match and increase move counter
 let openCards = [];
-let counter = 0;
+let moveCounter = 0;
+let matchCounter = 0;
 
 function compareCards(card) {
 	openCards.push(card);
@@ -102,6 +107,7 @@ function compareCards(card) {
 		if (icon1 === icon2) {
 			makeMatch(openCards);
 			openCards.length = 0;
+			matchCounter++;
 		}
 		else {
 			setTimeout(function() {
@@ -110,13 +116,11 @@ function compareCards(card) {
 			}, 1000);
 		}
 
-		counter++;
+		moveCounter++;
 		
-		updateCounterDisplay(counter);
+		updateCounterDisplay(moveCounter);
 		
-		if (counter === 16 || counter === 21 || counter === 26) {
-			updateStarDisplay(counter);
-		}
+		updateStarDisplay(moveCounter);
 	}
 }
 
@@ -151,15 +155,19 @@ function updateCounterDisplay(counter) {
 
 function updateStarDisplay(counter) {
 	const stars = document.querySelectorAll('.fa-star');
-	if (counter === 16) {
+	if (counter === 15) {
 		stars[2].classList = "fa fa-star-o";
 	}
-	if (counter === 21) {
+	if (counter === 18) {
 		stars[1].classList = "fa fa-star-o";
 	}
-	if (counter === 26) {
+	if (counter === 21) {
 		stars[0].classList = "fa fa-star-o";
 	}
+}
+
+function winGame() {
+
 }
 
 
