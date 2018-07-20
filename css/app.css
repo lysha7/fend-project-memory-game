@@ -140,3 +140,8 @@ h1 {
     font-weight: bold;
     cursor: pointer;
 }
+
+.win-popup .restart {
+    cursor: pointer;
+    margin-left: 7px;
+}

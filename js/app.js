@@ -177,6 +177,7 @@ function winGame() {
 	const totalStars = document.querySelector('.total-stars');
 	const totalTime = document.querySelector('.total-time');
 	const x = document.querySelector('.close');
+	const restart = document.querySelector('.win-popup .restart');
 	
 	winPopup.style.display = "block";
 	totalMoves.textContent = moveCounter;
@@ -185,6 +186,10 @@ function winGame() {
 
 	x.addEventListener('click', function() {
 		winPopup.style.display = "none";
+	});
+
+	restart.addEventListener('click', function() {
+		location.reload();
 	});
 
 }
