@@ -175,6 +175,7 @@ function winGame() {
 	const winPopup = document.querySelector('.win-popup');
 	const totalMoves = document.querySelector('.total-moves');
 	const totalStars = document.querySelector('.total-stars');
+	const starWord = document.querySelector('.star-word');
 	const totalTime = document.querySelector('.total-time');
 	const x = document.querySelector('.close');
 	const restart = document.querySelector('.win-popup .restart');
@@ -182,6 +183,9 @@ function winGame() {
 	winPopup.style.display = "block";
 	totalMoves.textContent = moveCounter;
 	totalStars.textContent = starsLeft;
+	if (starsLeft === 1) {
+		starWord.textContent = "star";
+	}
 	totalTime.textContent = `${pad2(min)}:${pad2(scd)}`;
 
 	x.addEventListener('click', function() {
