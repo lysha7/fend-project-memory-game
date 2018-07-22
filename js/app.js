@@ -178,16 +178,12 @@ function updateCounterDisplay(counter) {
 let starsLeft = 3;
 function updateStarDisplay(counter) {
 	const stars = document.querySelectorAll('.fa-star');
-	if (counter === 15) {
+	if (counter === 16) {
 		stars[2].classList = "fa fa-star-o";
 		starsLeft--;
 	}
-	if (counter === 18) {
+	if (counter === 20) {
 		stars[1].classList = "fa fa-star-o";
-		starsLeft--;
-	}
-	if (counter === 21) {
-		stars[0].classList = "fa fa-star-o";
 		starsLeft--;
 	}
 }
