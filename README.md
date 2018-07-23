@@ -5,7 +5,7 @@
 * [About](#about)
 * [Installation](#installation)
 * [Instructions](#instructions)
-* [Built With](#built_with)
+* [Built With](#built-with)
 * [Acknowledgements](#acknowledgements)
 * [Contributing](#contributing)
 
